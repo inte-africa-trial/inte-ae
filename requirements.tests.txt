@@ -1,0 +1,11 @@
+faker
+model-mommy
+django-crypto-fields
+django-revision
+django-rest-framework
+edc_test_utils
+inte_dashboard
+inte_labs
+inte_sites
+inte_visit_schedule
+inte_form_validators
