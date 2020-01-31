@@ -7,8 +7,7 @@ from .model_mixins import InteDeathReportModelMixin
 
 class DeathReport(InteDeathReportModelMixin, DeathReportModelMixin, BaseUuidModel):
 
-    study_day = models.IntegerField(
-        default=0, editable=False, help_text="not used")
+    study_day = models.IntegerField(default=0, editable=False, help_text="not used")
 
     class Meta(DeathReportModelMixin.Meta):
         pass

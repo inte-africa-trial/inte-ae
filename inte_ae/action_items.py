@@ -68,8 +68,7 @@ class AeFollowupAction(ActionWithNotification):
                 subject_identifier=self.subject_identifier,
                 report_datetime=self.reference_obj.report_datetime,
             ):
-                action_cls = site_action_items.get_by_model(
-                    model=offschedule_model)
+                action_cls = site_action_items.get_by_model(model=offschedule_model)
                 next_actions = self.append_to_next_if_required(
                     next_actions=next_actions,
                     action_name=action_cls.name,
@@ -165,8 +164,7 @@ class AeTmgAction(ActionWithNotification):
     name = AE_TMG_ACTION
     display_name = "TMG AE Report pending"
     notification_display_name = "TMG AE Report"
-    parent_action_names = [AE_INITIAL_ACTION,
-                           AE_FOLLOWUP_ACTION, AE_TMG_ACTION]
+    parent_action_names = [AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION, AE_TMG_ACTION]
     reference_model = "inte_ae.aetmg"
     related_reference_model = "inte_ae.aeinitial"
     related_reference_fk_attr = "ae_initial"
@@ -174,8 +172,7 @@ class AeTmgAction(ActionWithNotification):
     color_style = "info"
     show_link_to_changelist = True
     admin_site_name = "inte_ae_admin"
-    instructions = mark_safe(
-        f"This report is to be completed by the TMG only.")
+    instructions = mark_safe(f"This report is to be completed by the TMG only.")
     priority = HIGH_PRIORITY
 
     def close_action_item_on_save(self):
@@ -213,8 +210,7 @@ class DeathReportAction(ActionWithNotification):
 
         off_schedule_cls = django_apps.get_model("inte_prn.endofstudy")
         try:
-            off_schedule_cls.objects.get(
-                subject_identifier=self.subject_identifier)
+            off_schedule_cls.objects.get(subject_identifier=self.subject_identifier)
         except ObjectDoesNotExist:
             next_actions.append(END_OF_STUDY_ACTION)
         return next_actions
@@ -233,8 +229,7 @@ class DeathReportTmgAction(ActionWithNotification):
     color_style = "info"
     show_link_to_changelist = True
     admin_site_name = "inte_ae_admin"
-    instructions = mark_safe(
-        f"This report is to be completed by the TMG only.")
+    instructions = mark_safe(f"This report is to be completed by the TMG only.")
 
     def reopen_action_item_on_change(self):
         """Do not reopen if status is CLOSED.
