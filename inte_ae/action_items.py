@@ -20,12 +20,6 @@ from edc_constants.constants import (
 )
 from edc_reportable import GRADE5, GRADE4, GRADE3
 from edc_visit_schedule.utils import get_offschedule_models
-from inte_subject.constants import (
-    BLOOD_RESULTS_GLU_ACTION,
-    BLOOD_RESULTS_LFT_ACTION,
-    BLOOD_RESULTS_RFT_ACTION,
-    BLOOD_RESULTS_FBC_ACTION,
-)
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from inte_prn.constants import END_OF_STUDY_ACTION
 
@@ -88,12 +82,7 @@ class AeInitialAction(ActionWithNotification):
     name = AE_INITIAL_ACTION
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
-    parent_action_names = [
-        BLOOD_RESULTS_GLU_ACTION,
-        BLOOD_RESULTS_LFT_ACTION,
-        BLOOD_RESULTS_RFT_ACTION,
-        BLOOD_RESULTS_FBC_ACTION,
-    ]
+    parent_action_names = []
     reference_model = "inte_ae.aeinitial"
     show_link_to_changelist = True
     show_link_to_add = True
