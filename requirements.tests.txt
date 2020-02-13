@@ -1,5 +1,5 @@
 faker
-model-mommy
+model-bakery
 django-crypto-fields
 django-revision
 django-rest-framework
@@ -9,3 +9,5 @@ inte_labs
 inte_sites
 inte_visit_schedule
 inte_form_validators
+django_celery_beat
+django_celery_results

@@ -9,13 +9,13 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname, join
 
-
 app_name = 'inte_ae'
 base_dir = dirname(abspath(__file__))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
-    SITE_ID=10,
+    SITE_ID=100,
+    COUNTRY="uganda",
     BASE_DIR=base_dir,
     APP_NAME=app_name,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
@@ -34,8 +34,8 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     EMAIL_ENABLED=True,
     HOLIDAY_FILE=join(base_dir, app_name, "tests", "holidays.csv"),
     LIVE_SYSTEM=False,
-    RANDOMIZATION_LIST_PATH=join(
-        base_dir, app_name, "tests", "test_randomization_list.csv"),
+    RANDOMIZATION_LIST_PATH=join(base_dir, app_name, "tests"),
+    EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=False,
     INSTALLED_APPS=[
         "django.contrib.admin",
         "django.contrib.auth",

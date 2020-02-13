@@ -3,7 +3,7 @@ from inte_ae.models.ae_tmg import AeTmg
 from inte_ae.models.ae_susar import AeSusar
 from inte_ae.models.ae_followup import AeFollowup
 from edc_constants.constants import YES, NO, NOT_APPLICABLE
-from model_mommy.recipe import Recipe
+from model_bakery.recipe import Recipe
 from edc_reportable.constants import GRADE4
 from edc_utils.date import get_utcnow
 from inte_ae.models.death_report import DeathReport

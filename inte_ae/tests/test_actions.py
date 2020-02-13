@@ -2,7 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
 from edc_action_item.models import ActionItem
 from edc_constants.constants import CLOSED, NEW
-from model_mommy import mommy
+from model_bakery import baker
 from edc_adverse_event.constants import (
     AE_FOLLOWUP_ACTION,
     AE_TMG_ACTION,
@@ -10,14 +10,14 @@ from edc_adverse_event.constants import (
     DEATH_REPORT_TMG_ACTION,
 )
 from edc_reportable.constants import GRADE4, GRADE5
-from inte_screening.tests.inte_test_case_mixin import MetaTestCaseMixin
+from inte_screening.tests.inte_test_case_mixin import InteTestCaseMixin
 
 
-class TestActions(MetaTestCaseMixin, TestCase):
+class TestActions(InteTestCaseMixin, TestCase):
     def test_ae_initial_creates_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
-        ae_initial = mommy.make_recipe(
+        ae_initial = baker.make_recipe(
             "inte_ae.aeinitial", subject_identifier=subject_consent.subject_identifier
         )
 
@@ -36,7 +36,7 @@ class TestActions(MetaTestCaseMixin, TestCase):
     def test_ae_initial_creates_ae_followup_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
-        ae_initial = mommy.make_recipe(
+        ae_initial = baker.make_recipe(
             "inte_ae.aeinitial", subject_identifier=subject_consent.subject_identifier
         )
 
@@ -57,7 +57,7 @@ class TestActions(MetaTestCaseMixin, TestCase):
     def test_ae_initial_G4_creates_ae_tmg_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
-        mommy.make_recipe(
+        baker.make_recipe(
             "inte_ae.aeinitial",
             subject_identifier=subject_consent.subject_identifier,
             ae_grade=GRADE4,
@@ -74,7 +74,7 @@ class TestActions(MetaTestCaseMixin, TestCase):
     def test_ae_initial_G5_creates_death_report_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
-        mommy.make_recipe(
+        baker.make_recipe(
             "inte_ae.aeinitial",
             subject_identifier=subject_consent.subject_identifier,
             ae_grade=GRADE5,
@@ -97,7 +97,7 @@ class TestActions(MetaTestCaseMixin, TestCase):
     def test_death_report_create_death_report_tmg_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
-        mommy.make_recipe(
+        baker.make_recipe(
             "inte_ae.aeinitial",
             subject_identifier=subject_consent.subject_identifier,
             ae_grade=GRADE5,
@@ -107,7 +107,7 @@ class TestActions(MetaTestCaseMixin, TestCase):
             subject_identifier=subject_consent.subject_identifier,
         )
 
-        mommy.make_recipe(
+        baker.make_recipe(
             "inte_ae.deathreport",
             subject_identifier=subject_consent.subject_identifier,
             action_identifier=action_item.action_identifier,
